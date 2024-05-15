@@ -8,14 +8,13 @@ import {
   AlertIcon,
   Stack,
   Heading,
-  FormLabel,
   Flex,
   Text,
   Image,
 } from "@chakra-ui/react";
 import fb from "../../assets/fb.png";
 import google from "../../assets/g.png";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import image from "../../assets/sign up .jpg";
 
 const SignUpForm = () => {

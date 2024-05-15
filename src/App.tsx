@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Landing, Login, Signup, Home, Hotel } from "./pages";
+import { Landing, Login, Signup, Home, Hotel, Reserve, Payment } from "./pages";
 import { Stack, Box } from "@chakra-ui/react"; // Added Box from Chakra UI
 import Footer from "./components/footer/Footer";
 
@@ -16,6 +16,8 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Home />} />
             <Route path="/description" element={<Hotel />} />
+            <Route path="/reservation" element={<Reserve />} />
+            <Route path="/payment" element={<Payment />} />
           </Routes>
         </Stack>
         <Footer />

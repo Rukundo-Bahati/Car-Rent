@@ -1,11 +1,8 @@
-import { Card, CardBody, CardHeader, Image } from "@chakra-ui/react";
-import cont from "../../assets/continue.png";
-import { Link } from "react-router-dom";
-// import "./card.css";
+import { Card, CardBody, CardHeader, Image, Stack } from "@chakra-ui/react";
 
 const Desc = ({ img, children }) => {
   return (
-    <Card height="80vh" bgPosition="center" bgSize="cover" w="40%">
+    <Card height="100%" bgPosition="center" bgSize="cover" w="40%">
       <CardBody
         textAlign="center"
         fontSize="2rem"
@@ -17,7 +14,7 @@ const Desc = ({ img, children }) => {
         overflow="hidden"
       >
         <Image src={img} alt="Hotel Image" />
-        <div>{children}</div>
+        {children}
       </CardBody>
     </Card>
   );

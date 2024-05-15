@@ -1,0 +1,9 @@
+.btn {
+  background: #080036;
+  border-radius: 20px;
+  transition: all 0.4s;
+}
+
+.btn:hover {
+  outline: 2px solid #080036;
+}
