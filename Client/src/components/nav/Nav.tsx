@@ -17,6 +17,7 @@ const Nav = ({ heading, children }) => {
       color="#ddd"
       bg="#080124"
       p="1.6rem"
+      fontFamily='poppins, sans-serif'
     >
       <Heading>{heading}</Heading>
       <Link>{children}</Link>

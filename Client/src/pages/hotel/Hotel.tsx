@@ -23,6 +23,7 @@ const Hotel = () => {
         className="content"
         h="100vh"
       >
+        <Heading fontFamily='poppins, sans-serif' mb='2rem'>Our Hotels</Heading>
         <Desc>
           <Stack
             justifyContent="space-between"

@@ -13,6 +13,7 @@ import {
 } from "./pages"; // Import your NotFound component
 import { Stack, Box } from "@chakra-ui/react";
 import { Privacy, Help, Policy } from "./components/privancy/Privancy";
+import { About, Services, Hotels } from "./components/about/About";
 
 const App = () => {
   return (
@@ -37,6 +38,9 @@ const App = () => {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/help" element={<Help />} />
             <Route path="/policy" element={<Policy />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/ourhotels" element={<Hotels />} />
+            <Route path="/services" element={<Services />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Stack>
