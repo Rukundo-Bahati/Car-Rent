@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import {  useNavigate } from "react-router-dom";
+import { ToastContainer, toast, ToastOptions } from "react-toastify";
 import styles from "./styles.module.css";
 import { Heading } from "@chakra-ui/react";
 
@@ -12,7 +12,9 @@ const SignUp = () => {
     password: "",
     ConfirmPassword: "",
   });
-  const toastOptions = {
+
+  
+  const toastOptions: ToastOptions = {
     position: "top-right",
     autoClose: 8000,
     pauseOnHover: true,

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast , ToastOptions} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import styles from "./styles.module.css";
@@ -12,13 +12,15 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const toastOptions = {
+
+  const toastOptions: ToastOptions = {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 8000,
     pauseOnHover: true,
     draggable: true,
     theme: "dark",
   };
+
 
   const handleChange = ({ currentTarget: input }) => {
     setFormData({ ...formData, [input.name]: input.value });
@@ -45,6 +47,7 @@ const Login = () => {
 
         // Check if token exists
         const token = localStorage.getItem("token");
+        console.log(res.data)
         if (token) {
           navigate("/home");
         } else {

@@ -6,20 +6,21 @@ import { BsBell } from "react-icons/bs";
 import CardItem from "../../components/card/CardItem";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
-import { toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer, ToastOptions } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import allImages from "../../assets/Display";
-import Cookies from 'js-cookie';
 import "./home.css";
 
 const Home = () => {
-  const toastOptions = {
+
+  const toastOptions: ToastOptions = {
     position: "top-right",
-    autoClose: 5000,
+    autoClose: 8000,
     pauseOnHover: true,
     draggable: true,
     theme: "dark",
   };
+
 
   const navigate = useNavigate();
   const [currentUser, setCurrentUser] = useState(null); // Set initial state to null

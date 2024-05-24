@@ -1,20 +1,16 @@
 import { useState } from "react";
-import Nav from "../../components/nav/Nav";
-import { BsArrowLeft, BsHouse } from "react-icons/bs";
 import {
   Button,
   FormControl,
   Heading,
   Input,
   Stack,
-  Text,
   VStack,
 } from "@chakra-ui/react";
 import image from "../../assets/img3.jpg";
 import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, ToastOptions, toast } from "react-toastify";
 import axios from "axios";
-import Footer from "../../components/footer/Footer";
 
 const Reserve = () => {
   const bgImage = `url(${image})`;
@@ -29,7 +25,7 @@ const Reserve = () => {
     code: "",
     time: "",
   });
-  const toastOptions = {
+  const toastOptions:ToastOptions = {
     position: "top-right",
     autoClose: 8000,
     pauseOnHover: true,
@@ -74,13 +70,6 @@ const Reserve = () => {
 
   return (
     <Stack bgImage={bgImage} bgPosition="cover" bgSize="cover" h="100vh">
-      {/* <Nav heading={<BsArrowLeft style={{ fontSize: "2rem" }} />}>
-        <Text fontSize="2rem" color="#fff">
-          <Link to="/home">
-            <BsHouse />
-          </Link>
-        </Text>
-      </Nav> */}
       <Stack
         justifyContent="center"
         alignItems="center"
@@ -182,7 +171,6 @@ const Reserve = () => {
           </VStack>
         </Stack>
       </Stack>
-      {/* <Footer /> */}
       <ToastContainer />
     </Stack>
   );

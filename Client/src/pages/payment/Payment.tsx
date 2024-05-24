@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Button, FormControl, FormLabel, Grid, Heading, Input, Select, Stack } from "@chakra-ui/react";
 import axios from "axios";
-import { toast, ToastContainer } from "react-toastify";
+import { toast, ToastContainer, ToastOptions } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
@@ -19,7 +19,7 @@ const Payment = () => {
     cvv: "",
   });
 
-  const toastOptions = {
+  const toastOptions: ToastOptions = {
     position: "top-right",
     autoClose: 8000,
     pauseOnHover: true,
@@ -27,7 +27,7 @@ const Payment = () => {
     theme: "dark",
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
       ...prevData,
