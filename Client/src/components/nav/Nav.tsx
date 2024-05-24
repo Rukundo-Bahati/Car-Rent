@@ -13,11 +13,11 @@ const Nav = ({ heading, children }) => {
       justifyContent="space-between"
       alignItems="center"
       boxShadow=" 0 0 13px #0ef"
-      marginBottom="2rem"
+      // marginBottom="2rem"
       color="#ddd"
       bg="#080124"
       p="1.6rem"
-      fontFamily='poppins, sans-serif'
+      fontFamily="poppins, sans-serif"
     >
       <Heading>{heading}</Heading>
       <Link>{children}</Link>

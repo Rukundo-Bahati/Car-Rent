@@ -73,22 +73,21 @@ const Reserve = () => {
   };
 
   return (
-    <div>
-      <Nav heading={<BsArrowLeft style={{ fontSize: "2rem" }} />}>
+    <Stack bgImage={bgImage} bgPosition="cover" bgSize="cover" h="100vh">
+      {/* <Nav heading={<BsArrowLeft style={{ fontSize: "2rem" }} />}>
         <Text fontSize="2rem" color="#fff">
           <Link to="/home">
             <BsHouse />
           </Link>
         </Text>
-        {/* <Stepper /> */}
-      </Nav>
+      </Nav> */}
       <Stack
         justifyContent="center"
         alignItems="center"
-        bgImage={bgImage}
         bgPosition="cover"
         bgSize="cover"
         height="100vh"
+        backgroundColor="rgba(0, 0, 0, 0.5)"
       >
         <Stack
           bg="#020124"
@@ -96,6 +95,8 @@ const Reserve = () => {
           // justifyContent="center"
           alignItems="center"
           w={{ base: "100%", md: "36%" }}
+          opacity="1"
+          zIndex="1"
           // h="85vh"
         >
           <Heading color="#ddd"> Reservation</Heading>
@@ -181,9 +182,9 @@ const Reserve = () => {
           </VStack>
         </Stack>
       </Stack>
-      <Footer />
+      {/* <Footer /> */}
       <ToastContainer />
-    </div>
+    </Stack>
   );
 };
 

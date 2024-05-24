@@ -1,58 +1,89 @@
-import { Button, Heading, Img, Stack, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Heading,
+  Grid,
+  Box,
+  Text,
+  Img,
+  Link,
+  Stack,
+} from "@chakra-ui/react";
 import hotel2 from "../../assets/hotel4.jpg";
 import Desc from "../../components/description/Desc";
-import { Link } from "react-router-dom";
 import Nav from "../../components/nav/Nav";
 import { BsArrowLeft, BsHouse } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
+
 const Confirm = () => {
+  const navigate = useNavigate();
   const details = [
     { id: 1, name: "2 People" },
-    { id: 1, name: "Standard  Kingdom" },
-    { id: 1, name: "1 Night" },
-    { id: 1, name: "March 15 2022 to March 16 2022" },
-    { id: 1, name: "2 People" },
+    { id: 2, name: "Standard Kingdom" },
+    { id: 3, name: "1 Night" },
+    { id: 4, name: "March 15 2022 to March 16 2022" },
+    { id: 5, name: "Breakfast included" },
   ];
 
-  const style = {
-    listStyleType: "none",
-    color: "#aaa",
-    marginTop: "1rem",
-    borderBottom: "2px solid #ddd",
-  };
   return (
-    <div style={{ background: "#080124" }}>
+    <Box bg="#080124" minH="100vh">
       <Nav heading={<BsArrowLeft style={{ fontSize: "2rem" }} />}>
-        <Text fontSize="2rem" color="#fff">
-          <Link to="/home">
-            <BsHouse />
-          </Link>
-        </Text>
-        {/* <Stepper /> */}
+        <Link to="/home">
+          <BsHouse style={{ fontSize: "2rem", color: "#fff" }} />
+        </Link>
       </Nav>
-      <Stack justifyContent="center" alignItems="center" my="2rem" h="100vh">
+      <Stack
+        justifyContent="center"
+        alignItems="center"
+        my="2rem"
+        px={{ base: "1rem", md: "2rem" }}
+      >
         <Desc>
-          <Heading>Hotel Info</Heading>
+          <Heading color="#fff" textAlign="center" mb="1rem">
+            Hotel Info
+          </Heading>
         </Desc>
-        <ul style={style}>
-          {details.map((detail) => (
-            <li key={detail.id}>{detail.name}</li>
-          ))}
-        </ul>
-        <Text style={{ color: "#fff", margin: "0.4rem", fontSize: "2rem" }}>
+        <Grid
+          templateColumns={{ base: "1fr", md: "1fr 1fr" }}
+          gap={8}
+          justifyContent="center"
+          alignItems="center"
+          mb="2rem"
+          w="100%"
+          maxW="800px"
+        >
+          <Img src={hotel2} alt="Hotel" borderRadius="md" w="100%" h="auto" />
+          <Box>
+            <Grid
+              templateColumns="1fr"
+              gap={4}
+              textAlign="left"
+              color="#aaa"
+              borderBottom="2px solid #ddd"
+              pb="1rem"
+            >
+              {details.map((detail) => (
+                <Text key={detail.id} py="0.5rem">
+                  {detail.name}
+                </Text>
+              ))}
+            </Grid>
+          </Box>
+        </Grid>
+        <Text color="#fff" fontSize="2rem" mb="1rem">
           $250
         </Text>
-        <Link to="/complete">
-          <Button
-            colorScheme="blue"
-            // onClick={handleSubmit}
-            borderRadius="2rem"
-            // w="40%"
-          >
-            Complete
-          </Button>
-        </Link>
+
+        <Button
+          colorScheme="blue"
+          borderRadius="2rem"
+          w="90%"
+          maxW="20rem"
+          onClick={() => navigate("/complete")}
+        >
+          Complete Booking
+        </Button>
       </Stack>
-    </div>
+    </Box>
   );
 };
 
