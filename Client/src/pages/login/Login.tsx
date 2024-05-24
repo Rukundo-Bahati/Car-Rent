@@ -22,10 +22,11 @@ const Login = () => {
   };
 
 
-  const handleChange = ({ currentTarget: input }) => {
+  const handleChange = (e:any) => {
+    const input = e.target;
     setFormData({ ...formData, [input.name]: input.value });
   };
-
+  
   const validateForm = () => {
     const { email, password } = formData;
     if (email === "") {

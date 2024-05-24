@@ -1,4 +1,3 @@
-import React from "react";
 import { Stack, Heading, Text } from "@chakra-ui/react";
 
 export const Privacy = () => (

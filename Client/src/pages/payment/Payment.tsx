@@ -66,7 +66,7 @@ const Payment = () => {
     return true;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     if (validateForm()) {
       try {

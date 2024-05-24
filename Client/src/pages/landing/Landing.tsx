@@ -4,9 +4,7 @@ import {
   Grid,
   GridItem,
   Heading,
-  Icon,
   Image,
-  Img,
   Stack,
   Text,
 } from "@chakra-ui/react";

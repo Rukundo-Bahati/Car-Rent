@@ -1,6 +1,7 @@
 import { useState } from "react";
 import {  useNavigate } from "react-router-dom";
 import { ToastContainer, toast, ToastOptions } from "react-toastify";
+import axios from "axios";
 import styles from "./styles.module.css";
 import { Heading } from "@chakra-ui/react";
 
@@ -22,10 +23,11 @@ const SignUp = () => {
     theme: "dark",
   };
 
-  const handleChange = ({ currentTarget: input }) => {
+  const handleChange = (e:any) => {
+    const input = e.target;
     setFormData({ ...formData, [input.name]: input.value });
   };
-
+  
   const validateForm = () => {
     const { name, email, password, ConfirmPassword } = formData;
     if (!name || !email || !password || !ConfirmPassword) {

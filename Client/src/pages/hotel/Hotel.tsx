@@ -1,5 +1,4 @@
 import { Button, Heading, Img, Stack, Text } from "@chakra-ui/react";
-import hotel2 from "../../assets/m.jpg";
 import hotel from "../../assets/m.jpg";
 import Desc from "../../components/description/Desc";
 import "./hotel.css";

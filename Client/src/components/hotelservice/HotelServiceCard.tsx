@@ -1,6 +1,12 @@
 import { Card, CardHeader, CardBody, Image, Text } from "@chakra-ui/react";
+import { ReactNode } from "react";
 
-const HotelServiceCard = ({ img, children }) => {
+interface Props {
+  img: string | "";
+  children: ReactNode;
+}
+
+const HotelServiceCard = ({ img, children }: Props) => {
   return (
     <Card display="flex">
       <CardHeader>

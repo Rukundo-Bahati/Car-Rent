@@ -1,6 +1,11 @@
-import { Card, CardBody, Image } from "@chakra-ui/react";
+import { Card, CardBody } from "@chakra-ui/react";
+import { ReactNode } from "react";
 
-const Desc = ({ children }) => {
+interface Props {
+  children: ReactNode
+}
+
+const Desc = ({ children }: Props) => {
   return (
     <Card
       // height="100%"

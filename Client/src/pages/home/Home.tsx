@@ -12,7 +12,6 @@ import allImages from "../../assets/Display";
 import "./home.css";
 
 const Home = () => {
-
   const toastOptions: ToastOptions = {
     position: "top-right",
     autoClose: 8000,
@@ -21,24 +20,23 @@ const Home = () => {
     theme: "dark",
   };
 
-
   const navigate = useNavigate();
-  const [currentUser, setCurrentUser] = useState(null); // Set initial state to null
+  const [currentUser, setCurrentUser] = useState(""); // Set initial state to null
   const [visibleImages, setVisibleImages] = useState(6);
   const [searchQuery, setSearchQuery] = useState("");
-  
+
   useEffect(() => {
     const checkToken = () => {
-      const storedToken = localStorage.getItem('token');
+      const storedToken = localStorage.getItem("token");
       if (!storedToken) {
-        navigate('/login');
+        navigate("/login");
       } else {
         try {
           // Validate and parse the token here if needed
           setCurrentUser(storedToken);
         } catch (error) {
-          console.error('Error validating token:', error);
-          navigate('/login');
+          console.error("Error validating token:", error);
+          navigate("/login");
         }
       }
     };

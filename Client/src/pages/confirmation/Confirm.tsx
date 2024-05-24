@@ -5,7 +5,6 @@ import {
   Box,
   Text,
   Img,
-  Link,
   Stack,
 } from "@chakra-ui/react";
 import hotel2 from "../../assets/hotel4.jpg";
@@ -27,9 +26,10 @@ const Confirm = () => {
   return (
     <Box bg="#080124" minH="100vh">
       <Nav heading={<BsArrowLeft style={{ fontSize: "2rem" }} />}>
-        <Link to="/home">
-          <BsHouse style={{ fontSize: "2rem", color: "#fff" }} />
-        </Link>
+        <BsHouse
+          style={{ fontSize: "2rem", color: "#fff" }}
+          onClick={() => navigate("/home")}
+        />
       </Nav>
       <Stack
         justifyContent="center"

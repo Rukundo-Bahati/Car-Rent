@@ -1,6 +1,13 @@
+import { ReactNode } from "react";
 import styled from "styled-components";
 
-const CardItem = ({ img, children }) => {
+interface Props {
+  img: string,
+  children: ReactNode
+}
+
+
+const CardItem = ({ img, children }: Props) => {
   return (
     <Container>
       <img src={img} className="img" alt="hoverable" />
