@@ -16,6 +16,7 @@ import { Privacy, Help, Policy } from "./components/privancy/Privancy";
 import { About, Services, Hotels } from "./components/about/About";
 
 const App = () => {
+  const user = localStorage.getItem("token");
   return (
     <Box
       minHeight="100vh"

@@ -1,25 +1,10 @@
 import { useState } from "react";
-import {
-  FormControl,
-  Input,
-  Button,
-  VStack,
-  Stack,
-  Heading,
-  Text,
-  Image,
-  Flex,
-} from "@chakra-ui/react";
-import fb from "../../assets/fb.png";
-import google from "../../assets/g.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import image from "../../assets/sign up .jpg";
-import Footer from "../../components/footer/Footer";
-import Nav from "../../components/nav/Nav";
-import { BsBell } from "react-icons/bs";
+import styles from "./styles.module.css";
+import { Heading } from "@chakra-ui/react";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -51,121 +36,72 @@ const Login = () => {
     return true;
   };
 
-  // const handleSubmit = async (e: any) => {
-  //   e.preventDefault();
-  //   if (validateForm()) {
-  //     try {
-  //       const loginRoute = "http://localhost:7500/api/auth";
-  //       const { formData: res } = await axios.post(loginRoute, formData);
-  //       localStorage.setItem("token", res.formData);
-  //       navigate("/home");
-  //     } catch(err) {
-  //       toast.error("Error During Log in", toastOptions)
-  //     }
-  //   }
-  // };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (validateForm()) {
       try {
         const signinRoute = "http://localhost:7500/api/auth";
-        const response = await axios.post(signinRoute, formData); // Use await to handle the async request
-        localStorage.setItem("token", response.data.token); // Assume the response has a `token` field
-        navigate("/home");
+        const { data: res } = await axios.post(signinRoute, formData);
+
+        // Check if token exists
+        const token = localStorage.getItem("token");
+        if (token) {
+          navigate("/home");
+        } else {
+          toast.error("User Not Found!", toastOptions);
+        }
       } catch (err) {
-        toast.error("Error during Signing in. Try Again", toastOptions);
+        toast.error("Account Is Not Found! Try to Sign Up", toastOptions);
       }
     }
   };
 
-  const bgImage = `url(${image})`;
-
   return (
-    <div
-      style={{
-        background: `${bgImage}`,
-        backgroundPosition: "cover",
-        backgroundSize: "cover",
-      }}
-    >
-      <Nav heading="Places">
-        <BsBell style={{ fontSize: "2rem" }} />
-      </Nav>
-      <Stack
-        alignItems="center"
-        bgPosition="cover"
-        bgSize="cover"
-        spacing="2rem"
-      >
-        <Stack
-          boxShadow="0 0 13px dodgerblue"
-          bg="#15014682"
-          borderRadius="8px"
-          alignItems="center"
-          w={{ base: "90%", md: "30%" }}
-          h="max-content"
-        >
-          <Heading>Sign In</Heading>
-          <VStack
-            spacing={5}
-            py="3rem"
-            align="center"
-            justifyContent="center"
-            alignItems="center"
-            w={{ base: "90%", md: "90%" }}
-          >
-            <FormControl id="email">
-              <Input
+    <div>
+      <div className={styles.login_container}>
+        <div className={styles.login_form_container}>
+          <div className={styles.left}>
+            <form className={styles.form_container} onSubmit={handleSubmit}>
+            <Heading color="#1c024e" fontFamily="poppins">
+                Log into your Account
+              </Heading>
+              <input
                 type="email"
+                placeholder="Email"
                 name="email"
+                onChange={handleChange}
                 value={formData.email}
-                onChange={handleChange}
-                placeholder="Email Address"
-                // bg=""
+                required
+                className={styles.input}
               />
-            </FormControl>
-            <FormControl id="password">
-              <Input
+              <input
                 type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
                 placeholder="Password"
+                name="password"
+                onChange={handleChange}
+                value={formData.password}
+                required
+                className={styles.input}
               />
-            </FormControl>
 
-            <Button
-              colorScheme="blue"
-              onClick={handleSubmit}
-              borderRadius="2rem"
-              w="47%"
+              <button type="submit" className={styles.green_btn}>
+                Sign In
+              </button>
+            </form>
+          </div>
+          <div className={styles.right}>
+            <h1>New Here ?</h1>
+            <button
+              type="button"
+              className={styles.white_btn}
+              onClick={() => navigate("/signup")}
             >
-              Sign In
-            </Button>
-          </VStack>
-          <Link to="/rememberMe">
-            <Text color="#0ed">Forgot Password?</Text>
-          </Link>
-          <Text>Or</Text>
-          <Stack direction="row" w="20%">
-            <Link to="http://gmail.com" target="_blank">
-              <Image src={google} />
-            </Link>
-            <Link to="https://facebook.com">
-              <Image src={fb} />
-            </Link>
-          </Stack>
-          <Flex direction="row" gap="8px" mb="1rem">
-            Don't have an Account?
-            <Link to="/signup">
-              <Text color="#0ed ">Sign-Up</Text>
-            </Link>
-          </Flex>
-        </Stack>
-        <ToastContainer />
-      </Stack>
-      <Footer />
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </div>
+      <ToastContainer />
     </div>
   );
 };

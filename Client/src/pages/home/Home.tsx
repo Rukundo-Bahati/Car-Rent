@@ -1,16 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Grid, Heading, Text, Button, Flex } from "@chakra-ui/react";
 import Nav from "../../components/nav/Nav";
 import Search from "../../components/nav/Search";
 import { BsBell } from "react-icons/bs";
 import CardItem from "../../components/card/CardItem";
-import { Link } from "react-router-dom";
-import "./home.css";
+import { Link, useNavigate } from "react-router-dom";
 import Footer from "../../components/footer/Footer";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import allImages from "../../assets/Display";
-
+import Cookies from 'js-cookie';
+import "./home.css";
 
 const Home = () => {
   const toastOptions = {
@@ -21,18 +21,45 @@ const Home = () => {
     theme: "dark",
   };
 
+  const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState(null); // Set initial state to null
   const [visibleImages, setVisibleImages] = useState(6);
   const [searchQuery, setSearchQuery] = useState("");
+  
+  useEffect(() => {
+    const checkToken = () => {
+      const storedToken = localStorage.getItem('token');
+      if (!storedToken) {
+        navigate('/login');
+      } else {
+        try {
+          // Validate and parse the token here if needed
+          setCurrentUser(storedToken);
+        } catch (error) {
+          console.error('Error validating token:', error);
+          navigate('/login');
+        }
+      }
+    };
+
+    checkToken();
+  }, [navigate]);
+
+  if (currentUser === null) {
+    // Return loading state or null here if needed
+    return null;
+  }
+
   const filteredImages = allImages.filter(
     (image) =>
       image.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       image.description.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  if (filteredImages.length === 0){
+  if (filteredImages.length === 0) {
     toast.error("Search Not Found!. Refresh The Page", toastOptions);
   }
-  
+
   const loadMoreImages = () => {
     setVisibleImages((prevVisibleImages) => prevVisibleImages + 3);
   };

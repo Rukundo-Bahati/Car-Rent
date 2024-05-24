@@ -2,8 +2,6 @@ import { useState } from "react";
 import Nav from "../../components/nav/Nav";
 import { BsArrowLeft, BsHouse } from "react-icons/bs";
 import {
-  Alert,
-  AlertIcon,
   Button,
   FormControl,
   Heading,
@@ -12,7 +10,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import image from "../../assets/sign up .jpg";
+import image from "../../assets/img3.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
@@ -93,21 +91,15 @@ const Reserve = () => {
         height="100vh"
       >
         <Stack
-          bg="#15014182"
+          bg="#020124"
           borderRadius="8px"
           // justifyContent="center"
           alignItems="center"
           w={{ base: "100%", md: "36%" }}
-          h="85vh"
+          // h="85vh"
         >
           <Heading color="#ddd"> Reservation</Heading>
           <VStack spacing={4} align="center" py="1rem" width="80%">
-            {error && (
-              <Alert status="error" borderRadius="md">
-                <AlertIcon />
-                {error}
-              </Alert>
-            )}
             <FormControl id="name">
               <Input
                 type="text"
