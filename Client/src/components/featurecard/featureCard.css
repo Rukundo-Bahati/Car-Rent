@@ -1,0 +1,7 @@
+.feature {
+  transition: all 0.4s;
+}
+
+.feature:hover {
+  box-shadow: 0 0 15px #0ef;
+}

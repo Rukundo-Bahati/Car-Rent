@@ -1,0 +1,8 @@
+@media screen and (max-width: 800px) {
+  .grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.btn:hover {
+  background: red;
+}

@@ -1,0 +1,48 @@
+.step-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 9rem; /* Equivalent to w-36 in Tailwind */
+}
+
+.step-item:not(:first-child):before {
+  content: '';
+  position: absolute;
+  background-color: #cbd5e0; /* Equivalent to bg-slate-200 in Tailwind */
+  width: 100%;
+  height: 3px;
+  right: 50%;
+  top: 33%; /* Equivalent to top-1/3 in Tailwind */
+  transform: translateY(-50%); /* Equivalent to -translate-y-2/4 in Tailwind */
+}
+
+.step {
+  width: 2.5rem; /* Equivalent to w-10 in Tailwind */
+  height: 2.5rem; /* Equivalent to h-10 in Tailwind */
+  display: flex;
+  z-index: 10;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%; /* Equivalent to rounded-full in Tailwind */
+  font-weight: 600; /* Equivalent to font-semibold in Tailwind */
+  color: white; /* Equivalent to text-white in Tailwind */
+}
+
+.active .step {
+  background-color: #2b6cb0; /* Equivalent to bg-sky-500 in Tailwind */
+}
+
+.complete .step {
+  background-color: #38a169; /* Equivalent to bg-green-600 in Tailwind */
+}
+
+.complete p {
+  color: white;
+}
+
+.complete:not(:first-child):before,
+.active:not(:first-child):before {
+  background-color: #38a169; /* Equivalent to bg-green-600 in Tailwind */
+}
