@@ -18,12 +18,12 @@ const Reserve = () => {
 
   const [formData, setFormData] = useState({
     fname: "",
-    lname: "",
+    age: "",
     email: "",
     tel: "",
     country: "",
-    code: "",
-    time: "",
+    experience: "",
+    car: "",
   });
   const toastOptions:ToastOptions = {
     position: "top-right",
@@ -39,8 +39,8 @@ const Reserve = () => {
   };
 
   const validateForm = () => {
-    const { fname, lname, email, tel, country, code, time } = formData;
-    if (!fname || !lname || !email || !country || !code || !tel || !time) {
+    const { fname, age, email, tel, country, experience, car } = formData;
+    if (!fname || !age || !email || !country || !experience || !tel || !car) {
       toast.error("All fields are required.", toastOptions);
       return false;
     }
@@ -50,12 +50,12 @@ const Reserve = () => {
     }
     return true;
   };
-
+p
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const reservationRoute = "http://localhost:7500/api/reservation";
+        const reservationRoute = "http://localhost:5230/api/reservation";
         console.log("Form Data:", formData); // Log the form data before sending
         const response = await axios.post(reservationRoute, formData);
         toast.success("Successful Operation...");
@@ -88,7 +88,7 @@ const Reserve = () => {
           zIndex="1"
           // h="85vh"
         >
-          <Heading color="#ddd"> Reservation</Heading>
+          <Heading color="#ddd">Car Rent</Heading>
           <VStack spacing={4} align="center" py="1rem" width="80%">
             <FormControl id="name">
               <Input
@@ -96,16 +96,16 @@ const Reserve = () => {
                 name="fname"
                 value={formData.fname}
                 onChange={handleChange}
-                placeholder="FirstName"
+                placeholder="FullName"
               />
             </FormControl>
             <FormControl id="name">
               <Input
                 type="text"
-                name="lname"
-                value={formData.lname}
+                name="age"
+                value={formData.age}
                 onChange={handleChange}
-                placeholder="LastName"
+                placeholder="Age"
               />
             </FormControl>
             <FormControl id="email">
@@ -132,20 +132,20 @@ const Reserve = () => {
             <FormControl id="country">
               <Input
                 type="text"
-                name="time"
-                value={formData.time}
+                name="car"
+                value={formData.car}
                 onChange={handleChange}
-                placeholder="Time You'll stay here"
+                placeholder="Type Of Car"
               />
             </FormControl>
 
             <FormControl id="code">
               <Input
-                type="text"
-                name="code"
-                value={formData.code}
+                type="number"
+                name="experience"
+                value={formData.experience}
                 onChange={handleChange}
-                placeholder="Postal code"
+                placeholder="Driving Experience"
               />
             </FormControl>
             <FormControl id="tel">

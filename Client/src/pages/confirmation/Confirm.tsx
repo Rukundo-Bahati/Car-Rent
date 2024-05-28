@@ -1,13 +1,5 @@
-import {
-  Button,
-  Heading,
-  Grid,
-  Box,
-  Text,
-  Img,
-  Stack,
-} from "@chakra-ui/react";
-import hotel2 from "../../assets/hotel4.jpg";
+import { Button, Heading, Grid, Box, Text, Img, Stack } from "@chakra-ui/react";
+import carImage from "../../assets/hotel4.jpg";
 import Desc from "../../components/description/Desc";
 import Nav from "../../components/nav/Nav";
 import { BsArrowLeft, BsHouse } from "react-icons/bs";
@@ -17,10 +9,10 @@ const Confirm = () => {
   const navigate = useNavigate();
   const details = [
     { id: 1, name: "2 People" },
-    { id: 2, name: "Standard Kingdom" },
-    { id: 3, name: "1 Night" },
-    { id: 4, name: "March 15 2022 to March 16 2022" },
-    { id: 5, name: "Breakfast included" },
+    { id: 2, name: "Standard Car" },
+    { id: 3, name: "1 Day" },
+    { id: 4, name: "Pick-up: March 15, 2022" },
+    { id: 5, name: "Drop-off: March 16, 2022" },
   ];
 
   return (
@@ -39,7 +31,7 @@ const Confirm = () => {
       >
         <Desc>
           <Heading color="#fff" textAlign="center" mb="1rem">
-            Hotel Info
+            Car Rental Info
           </Heading>
         </Desc>
         <Grid
@@ -51,7 +43,7 @@ const Confirm = () => {
           w="100%"
           maxW="800px"
         >
-          <Img src={hotel2} alt="Hotel" borderRadius="md" w="100%" h="auto" />
+          <Img src={carImage} alt="Car" borderRadius="md" w="100%" h="auto" />
           <Box>
             <Grid
               templateColumns="1fr"
@@ -70,7 +62,7 @@ const Confirm = () => {
           </Box>
         </Grid>
         <Text color="#fff" fontSize="2rem" mb="1rem">
-          $250
+          $150
         </Text>
 
         <Button

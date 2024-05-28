@@ -2,7 +2,7 @@ import { Card, CardBody } from "@chakra-ui/react";
 import { ReactNode } from "react";
 
 interface Props {
-  children: ReactNode
+  children: ReactNode;
 }
 
 const Desc = ({ children }: Props) => {
@@ -21,10 +21,10 @@ const Desc = ({ children }: Props) => {
       <CardBody
         textAlign="center"
         fontSize="2rem"
-        display="flex"
-        flexDirection="column"
-        justifyContent="center"
-        alignItems="center"
+        // display="flex"
+        // flexDirection="column"
+        // justifyContent="center"
+        // alignItems="center"
         className="body"
         overflow="hidden"
       >

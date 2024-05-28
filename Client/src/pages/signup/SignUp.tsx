@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast, ToastOptions } from "react-toastify";
 import axios from "axios";
 import styles from "./styles.module.css";
@@ -14,7 +14,6 @@ const SignUp = () => {
     ConfirmPassword: "",
   });
 
-  
   const toastOptions: ToastOptions = {
     position: "top-right",
     autoClose: 8000,
@@ -23,11 +22,11 @@ const SignUp = () => {
     theme: "dark",
   };
 
-  const handleChange = (e:any) => {
+  const handleChange = (e: any) => {
     const input = e.target;
     setFormData({ ...formData, [input.name]: input.value });
   };
-  
+
   const validateForm = () => {
     const { name, email, password, ConfirmPassword } = formData;
     if (!name || !email || !password || !ConfirmPassword) {
@@ -45,7 +44,7 @@ const SignUp = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const signupRoute = "http://localhost:7500/api/users";
+        const signupRoute = "http://localhost:5230/api/users";
         const { data: res } = await axios.post(signupRoute, formData);
 
         // Check if the user was successfully created
@@ -104,7 +103,7 @@ const SignUp = () => {
                 className={styles.input}
               />
               <input
-                type="email"
+                type="password"
                 placeholder="Password"
                 name="password"
                 onChange={handleChange}

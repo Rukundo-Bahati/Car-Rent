@@ -43,12 +43,12 @@ const Login = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const signinRoute = "http://localhost:7500/api/auth";
+        const signinRoute = "http://localhost:5230/api/auth";
         const { data: res } = await axios.post(signinRoute, formData);
 
         // Check if token exists
         const token = localStorage.getItem("token");
-        console.log(res.data)
+        // console.log(res.data) 
         if (token) {
           navigate("/home");
         } else {

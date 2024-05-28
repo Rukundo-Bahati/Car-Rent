@@ -1,5 +1,5 @@
-import { Button, Heading, Img, Stack, Text } from "@chakra-ui/react";
-import hotel from "../../assets/m.jpg";
+import { Button, Flex, Heading, Img, Stack, Text } from "@chakra-ui/react";
+import car from "../../assets/hotel11.jpg";
 import Desc from "../../components/description/Desc";
 import "./hotel.css";
 import { Link } from "react-router-dom";
@@ -20,38 +20,41 @@ const Hotel = () => {
         justifyContent="center"
         alignItems="center"
         className="content"
+        mt="2.5rem"
         h="100vh"
       >
-        <Heading fontFamily='poppins, sans-serif' mb='2rem'>Our Hotels</Heading>
+        <Heading fontFamily="poppins, sans-serif" mb="">
+          Our Cars
+        </Heading>
         <Desc>
-          <Stack
+          <Flex
             justifyContent="space-between"
             alignItems="center"
             m="1rem"
-            direction="row"
-            gap={{ base: "3rem", md: "15rem" }}
+            // direction="row"
+            gap={{ base: "3rem", md: "5rem" }}
           >
             <div>
-              <Heading fontSize="19px">Taj</Heading>
+              <Heading fontSize="">Tesla Model</Heading>
               <Text color="#ddd" fontSize="14px">
-                $20/Night
+                Starting at $100/Day
               </Text>
             </div>
             <div>
-              <Img src={hotel} alt="" w="100%" borderRadius="10px" />
+              <Img src={car} alt="Tesla Model S" w="100%" borderRadius="10px" />
             </div>
-          </Stack>
+          </Flex>
           <Text fontSize="17px" color="#ddd">
-            Taj Hotels is a chain of luxury hotels and a subsidiary of the
-            Indian Hotels Company Limited, headquartered at Express Towers,
-            Nariman Point, Mumbai.
+            The Tesla Model S is a flagship luxury electric sedan known for its
+            cutting-edge technology and impressive performance. Experience the
+            future of driving with autopilot features and zero-emission driving.
           </Text>
           <Text display="flex" color="#ddd">
-            9.8 KM
+            Available at all major city locations
           </Text>
           <Link to="/reservation">
             <Button className="btn" bg="#080124" border="2px solid #0df">
-              Book Now
+              Rent Now
             </Button>
           </Link>
         </Desc>

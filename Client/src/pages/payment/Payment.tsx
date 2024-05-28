@@ -1,22 +1,35 @@
 import { useState } from "react";
-import { Button, FormControl, FormLabel, Grid, Heading, Input, Select, Stack } from "@chakra-ui/react";
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  Grid,
+  Heading,
+  Input,
+  Select,
+  Stack,
+  Textarea,
+} from "@chakra-ui/react";
 import axios from "axios";
+import image from "../../assets/hotel10.jpg";
 import { toast, ToastContainer, ToastOptions } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    fname: "",
-    lname: "",
+    lno: "",
+    duration: "",
+    carType: "",
+    passengerCount: "",
+    pickupDate: "",
+    pickupTime: "",
     email: "",
-    roomType: "",
-    guest: "",
-    arrivalDate: "", 
-    arrivalTime: "", 
+    specialRequest: "",
     cardNo: "",
     expiryDate: "",
     cvv: "",
+    save: false,
   });
 
   const toastOptions: ToastOptions = {
@@ -27,7 +40,7 @@ const Payment = () => {
     theme: "dark",
   };
 
-  const handleChange = (e:any) => {
+  const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -37,28 +50,30 @@ const Payment = () => {
 
   const validateForm = () => {
     const {
-      fname,
-      lname,
+      lno,
+      duration,
+      carType,
+      passengerCount,
+      pickupDate,
+      pickupTime,
       email,
-      roomType,
-      guest,
-      arrivalDate,
-      arrivalTime,
       cardNo,
       expiryDate,
       cvv,
+      save,
     } = formData;
     if (
-      !fname ||
-      !lname ||
+      !lno ||
+      !duration ||
+      !carType ||
+      !passengerCount ||
+      !pickupDate ||
+      !pickupTime ||
       !email ||
-      !roomType ||
-      !guest ||
-      !arrivalDate ||
-      !arrivalTime ||
       !cardNo ||
       !expiryDate ||
-      !cvv
+      !cvv ||
+      !save
     ) {
       toast.error("Please, Enter All Data", toastOptions);
       return false;
@@ -66,11 +81,11 @@ const Payment = () => {
     return true;
   };
 
-  const handleSubmit = async (e:any) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const paymentUrl = "http://localhost:7500/api/payment";
+        const paymentUrl = "http://localhost:5230/api/payment";
         const response = await axios.post(paymentUrl, formData);
         console.log(response.data);
         navigate("/confirm");
@@ -82,18 +97,24 @@ const Payment = () => {
   };
 
   return (
-    <div style={{ background: "#080124" }}>
+    <Stack
+      bgImage={`url(${image})`}
+      bgPosition="cover"
+      bgSize="cover"
+      h="100vh"
+    >
       <Stack
         justifyContent="center"
         alignItems="center"
         bgPosition="cover"
         bgSize="cover"
         height="100vh"
+        backgroundColor="rgba(0, 0, 0, 0.5)"
         p="1rem"
       >
-        <Heading m="1rem">Hotel Booking</Heading>
+        <Heading m="1rem">Car Renting</Heading>
         <Stack
-          bg="#15014182"
+          bg="#080124"
           borderRadius="8px"
           alignItems="center"
           border="1px solid #0ef"
@@ -102,75 +123,85 @@ const Payment = () => {
           boxShadow="0 0 10px #0ef"
         >
           <Grid gridTemplateColumns="repeat(2,1fr)" gap="1rem">
-            <FormControl id="fname">
+            <FormControl id="lno">
               <Input
                 type="text"
-                name="fname"
-                value={formData.fname}
+                name="lno"
+                value={formData.lno}
                 onChange={handleChange}
-                placeholder="First Name"
+                placeholder="Driver's License Number"
               />
             </FormControl>
-            <FormControl id="lname">
+            <FormControl id="duration">
               <Input
                 type="text"
-                name="lname"
-                value={formData.lname}
+                name="duration"
+                value={formData.duration}
                 onChange={handleChange}
-                placeholder="Last Name"
+                placeholder="Rental Duration"
               />
             </FormControl>
           </Grid>
+
+          <FormControl id="carType">
+            <Select
+              name="carType"
+              value={formData.carType}
+              onChange={handleChange}
+              placeholder="Car Type"
+            >
+              <option value="sedan">Sedan</option>
+              <option value="suv">SUV</option>
+              <option value="convertible">Convertible</option>
+              <option value="luxury">Luxury</option>
+            </Select>
+          </FormControl>
+          <FormControl id="passengerCount">
+            <Input
+              type="number"
+              name="passengerCount"
+              value={formData.passengerCount}
+              onChange={handleChange}
+              placeholder="Number Of Passengers"
+            />
+          </FormControl>
           <FormControl id="email">
             <Input
-              type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               placeholder="Email Address"
             />
           </FormControl>
-          <FormControl id="roomType">
-            <Select
-              name="roomType"
-              value={formData.roomType}
-              onChange={handleChange}
-              placeholder="Room Type"
-            >
-              <option value="">Select Room Type</option>
-              <option value="smallroom">Small Room ($70)</option>
-              <option value="bigroom">Big Room ($120)</option>
-              <option value="kingroom">King Room ($200)</option>
-            </Select>
-          </FormControl>
-          <FormControl id="guest">
-            <Input
-              type="number"
-              name="guest"
-              value={formData.guest}
-              onChange={handleChange}
-              placeholder="Number Of Guests"
-            />
-          </FormControl>
-          <FormLabel>Arrival Date & Time</FormLabel>
+          <FormLabel>Pick-up Date & Time</FormLabel>
           <Grid gridTemplateColumns="repeat(2,1fr)" gap="1rem">
-            <FormControl id="arrivalDate">
+            <FormControl id="pickupDate">
               <Input
                 type="date"
-                name="arrivalDate"
-                value={formData.arrivalDate}
+                name="pickupDate"
+                value={formData.pickupDate}
                 onChange={handleChange}
               />
             </FormControl>
-            <FormControl id="arrivalTime">
+            <FormControl id="pickupTime">
               <Input
                 type="time"
-                name="arrivalTime"
-                value={formData.arrivalTime}
+                name="pickupTime"
+                value={formData.pickupTime}
                 onChange={handleChange}
               />
             </FormControl>
           </Grid>
+
+          <FormControl id="specialRequest">
+            <Textarea
+              name="specialRequest"
+              resize='none'
+              value={formData.specialRequest}
+              onChange={handleChange}
+              placeholder="Special Request"
+            />
+          </FormControl>
           <FormControl id="cardNo">
             <Input
               type="number"
@@ -200,6 +231,7 @@ const Payment = () => {
               />
             </FormControl>
           </Grid>
+
           <FormControl>
             <input
               type="checkbox"
@@ -207,7 +239,7 @@ const Payment = () => {
               id="save"
               onChange={handleChange}
             />
-            Save This Credit Card
+            I Agree to the Terms & Conditions
           </FormControl>
           <Button colorScheme="blue" onClick={handleSubmit} borderRadius="2rem">
             Go To Confirmation
@@ -215,7 +247,7 @@ const Payment = () => {
         </Stack>
       </Stack>
       <ToastContainer />
-    </div>
+    </Stack>
   );
 };
 

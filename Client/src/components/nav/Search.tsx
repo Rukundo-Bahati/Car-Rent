@@ -9,7 +9,7 @@ interface Props {
 const Search = ({ onSearch }: Props) => {
   const ref = useRef<HTMLInputElement>(null);
   return (
-    <Stack alignItems='center' justifyContent='center'>
+    <Stack alignItems='center' justifyContent='center' mt='2rem'>
       <form
        onSubmit={(event) => {
         event.preventDefault();

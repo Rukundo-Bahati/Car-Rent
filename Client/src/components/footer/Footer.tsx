@@ -10,7 +10,7 @@ const Footer = () => {
       <Flex gap="1rem" justifyContent="center" alignItems="center">
         <Link to="/about">About</Link>
         <Link to="/services">Services</Link>
-        <Link to="/ourhotels">Hotels</Link>
+        <Link to="/ourhotels">Cars</Link>
         <Link to="/help">Help</Link>
         <Link to="/privacy">Privacy</Link>
         <Link to="/policy">Policy</Link>

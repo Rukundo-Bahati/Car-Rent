@@ -51,15 +51,15 @@ export const About = () => (
       >
         <Heading>About Us</Heading>
         <Text>
-          Welcome to our hotel-finding app, where your comfort and convenience
-          are our top priorities. Our mission is to simplify the process of
-          finding and booking the perfect hotel for your stay, whether you're
-          traveling for business or leisure.
+          Welcome to our car rental app, where your travel convenience and
+          satisfaction are our top priorities. Our mission is to simplify the
+          process of finding and renting the perfect car for your journey,
+          whether it's for business or leisure.
         </Text>
         <Text>
-          We gather data to provide you with personalized and efficient hotel
-          booking services. This includes information such as your name, email,
-          booking details, and usage patterns to ensure a seamless and tailored
+          We gather data to provide you with personalized and efficient car
+          rental services. This includes information such as your name, email,
+          rental details, and usage patterns to ensure a seamless and tailored
           experience.
         </Text>
         <Text>
@@ -69,8 +69,8 @@ export const About = () => (
         </Text>
         <Text>
           Should you have any questions or concerns about our practices, please
-          reach out to us at support@hotelfindingapp.com. We are here to assist
-          you and ensure your experience with our app is exceptional.
+          reach out to us at support@carrentalapp.com. We are here to assist you
+          and ensure your experience with our app is exceptional.
         </Text>
       </Stack>
       <Image src={hotel38} borderRadius="1rem" m="1rem" w="90%" />
@@ -94,50 +94,41 @@ export const Services = () => (
     >
       <Heading>Our Services</Heading>
       <Grid
-        gridTemplateColumns={{
-          base: "repeat(1,1fr)",
-          md: "repeat(2,1fr)",
-          lg: "repeat(3,1fr)",
-        }}
-        gap="2rem"
-      >
-        <HotelServiceCard img={hotel22}>
-          <Flex direction="column" justifyContent="center" alignItems="center">
-            <Heading fontSize="1.6rem">Hotel Search</Heading>
-            Welcome to the Hotel Booking App! Our platform is designed to help
-            you find and book the best hotels effortlessly.
-          </Flex>
-        </HotelServiceCard>
-        <HotelServiceCard img={hotel14}>
-          <Heading fontSize="1.6rem">Reviesws and Ratings</Heading>
-          Explore our wide range of hotel options, compare prices, read reviews,
-          and make reservations all in one place. Whether you're looking for
-          luxury accommodations or budget-friendly options, we have something
-          for everyone.
-        </HotelServiceCard>
-        <HotelServiceCard img={hotel36}>
-          <Heading fontSize="1.6rem">Maps and Directions</Heading>
-          If you encounter any issues or have any questions, please visit our
-          FAQ section first. If you need further assistance, feel free to reach
-          out to us.
-        </HotelServiceCard>
-        <HotelServiceCard img={hotel22}>
-          <Heading fontSize="1.6rem">Customer Support</Heading>
-          You can contact our support team at support@hotelbookingapp.com or
-          call us at (123) 456-7890. We are available from 9 AM to 6 PM, Monday
-          to Friday, to assist you with your booking needs.
-        </HotelServiceCard>
-        <HotelServiceCard img={hotel15}>
-          <Heading fontSize="1.6rem">Accomodation</Heading>
-          Thank you for choosing our service. We are here to help you find the
-          perfect stay!
-        </HotelServiceCard>
-        <HotelServiceCard img={hotel9}>
-          <Heading fontSize="1.6rem">Booking Management</Heading>
-          Thank you for choosing our service. We are here to help you find the
-          perfect stay!
-        </HotelServiceCard>
-      </Grid>
+  gridTemplateColumns={{
+    base: "repeat(1,1fr)",
+    md: "repeat(2,1fr)",
+    lg: "repeat(3,1fr)",
+  }}
+  gap="2rem"
+>
+  <HotelServiceCard img={hotel22}>
+    <Flex direction="column" justifyContent="center" alignItems="center">
+      <Heading fontSize="1.6rem">Car Search</Heading>
+      Welcome to the Car Rental App! Our platform is designed to help you find and book the best rental cars effortlessly.
+    </Flex>
+  </HotelServiceCard>
+  <HotelServiceCard img={hotel14}>
+    <Heading fontSize="1.6rem">Reviews and Ratings</Heading>
+    Explore our wide range of car options, compare prices, read reviews, and make reservations all in one place. Whether you're looking for luxury cars or budget-friendly options, we have something for everyone.
+  </HotelServiceCard>
+  <HotelServiceCard img={hotel36}>
+    <Heading fontSize="1.6rem">Maps and Directions</Heading>
+    If you encounter any issues or have any questions, please visit our FAQ section first. If you need further assistance, feel free to reach out to us.
+  </HotelServiceCard>
+  <HotelServiceCard img={hotel22}>
+    <Heading fontSize="1.6rem">Customer Support</Heading>
+    You can contact our support team at support@carrentalapp.com or call us at (123) 456-7890. We are available from 9 AM to 6 PM, Monday to Friday, to assist you with your rental needs.
+  </HotelServiceCard>
+  <HotelServiceCard img={hotel15}>
+    <Heading fontSize="1.6rem">Accommodation</Heading>
+    Thank you for choosing our service. We are here to help you find the perfect ride for your trip!
+  </HotelServiceCard>
+  <HotelServiceCard img={hotel9}>
+    <Heading fontSize="1.6rem">Booking Management</Heading>
+    Manage your bookings easily with our app. Thank you for choosing our service, and we are here to ensure you have a smooth rental experience!
+  </HotelServiceCard>
+</Grid>
+
     </Stack>
     <Footer />
   </Stack>
