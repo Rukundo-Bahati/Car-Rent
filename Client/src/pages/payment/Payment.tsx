@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Button,
   FormControl,
@@ -16,6 +16,7 @@ import { toast, ToastContainer, ToastOptions } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
+  const [currentUser, setCurrentUser] = useState(""); 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     lno: "",
@@ -29,18 +30,42 @@ const Payment = () => {
     cardNo: "",
     expiryDate: "",
     cvv: "",
-    save: false,
   });
 
   const toastOptions: ToastOptions = {
     position: "top-right",
-    autoClose: 8000,
+    autoClose: 4000,
     pauseOnHover: true,
     draggable: true,
     theme: "dark",
   };
 
-  const handleChange = (e) => {
+  
+  useEffect(() => {
+    const checkToken = () => {
+      const storedToken = localStorage.getItem("token");
+      if (!storedToken) {
+        navigate("/login");
+      } else {
+        try {
+          // Validate and parse the token here if needed
+          setCurrentUser(storedToken);
+        } catch (error) {
+          console.error("Error validating token:", error);
+          navigate("/login");
+        }
+      }
+    };
+
+    checkToken();
+  }, [navigate]);
+
+  if (currentUser === null) {
+    // Return loading state or null here if needed
+    return null;
+  }
+
+  const handleChange = (e:any) => {
     const { name, value, type, checked } = e.target;
     setFormData((prevData) => ({
       ...prevData,
@@ -60,7 +85,6 @@ const Payment = () => {
       cardNo,
       expiryDate,
       cvv,
-      save,
     } = formData;
     if (
       !lno ||
@@ -72,8 +96,7 @@ const Payment = () => {
       !email ||
       !cardNo ||
       !expiryDate ||
-      !cvv ||
-      !save
+      !cvv
     ) {
       toast.error("Please, Enter All Data", toastOptions);
       return false;
@@ -81,7 +104,7 @@ const Payment = () => {
     return true;
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e:any) => {
     e.preventDefault();
     if (validateForm()) {
       try {
@@ -196,7 +219,7 @@ const Payment = () => {
           <FormControl id="specialRequest">
             <Textarea
               name="specialRequest"
-              resize='none'
+              resize="none"
               value={formData.specialRequest}
               onChange={handleChange}
               placeholder="Special Request"
@@ -237,7 +260,6 @@ const Payment = () => {
               type="checkbox"
               name="save"
               id="save"
-              onChange={handleChange}
             />
             I Agree to the Terms & Conditions
           </FormControl>

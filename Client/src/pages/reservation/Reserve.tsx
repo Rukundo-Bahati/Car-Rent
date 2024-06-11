@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Button,
   FormControl,
@@ -15,6 +15,7 @@ import axios from "axios";
 const Reserve = () => {
   const bgImage = `url(${image})`;
   const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState(""); 
 
   const [formData, setFormData] = useState({
     fname: "",
@@ -25,15 +26,39 @@ const Reserve = () => {
     experience: "",
     car: "",
   });
-  const toastOptions:ToastOptions = {
+  const toastOptions: ToastOptions = {
     position: "top-right",
-    autoClose: 8000,
+    autoClose: 4000,
     pauseOnHover: true,
     draggable: true,
     theme: "dark",
   };
 
-  const handleChange = (e:any) => {
+  useEffect(() => {
+    const checkToken = () => {
+      const storedToken = localStorage.getItem("token");
+      if (!storedToken) {
+        navigate("/login");
+      } else {
+        try {
+          // Validate and parse the token here if needed
+          setCurrentUser(storedToken);
+        } catch (error) {
+          console.error("Error validating token:", error);
+          navigate("/login");
+        }
+      }
+    };
+
+    checkToken();
+  }, [navigate]);
+
+  if (currentUser === null) {
+    // Return loading state or null here if needed
+    return null;
+  }
+
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
@@ -50,7 +75,6 @@ const Reserve = () => {
     }
     return true;
   };
-p
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (validateForm()) {
@@ -62,8 +86,8 @@ p
         console.log("Response Data:", response.data); // Log the response data for debugging
         navigate("/payment");
       } catch (err) {
-        console.error("Error during Booking Your Hotel:", err);
-        toast.error("Error during Booking Your Hotel. Try Again", toastOptions);
+        console.error("Error during Renting A Car:", err);
+        toast.error("Error during Renting a Car. Try Again", toastOptions);
       }
     }
   };

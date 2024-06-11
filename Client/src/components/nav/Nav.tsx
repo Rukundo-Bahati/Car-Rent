@@ -1,5 +1,6 @@
 import { Heading, Link, Stack } from "@chakra-ui/react";
 import { ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   heading: string | ReactNode;
@@ -7,6 +8,7 @@ interface Props {
 }
 
 const Nav = ({ heading, children } : Props) => {
+  const navigate = useNavigate()
   return (
     <Stack
       direction="row"
@@ -19,7 +21,7 @@ const Nav = ({ heading, children } : Props) => {
       p="1.6rem"
       fontFamily="poppins, sans-serif"
     >
-      <Heading>{heading}</Heading>
+      <Heading fontSize='1.4rem' onClick={() => navigate("/")} cursor='pointer'>{heading}</Heading>
       <Link>{children}</Link>
     </Stack>
   );

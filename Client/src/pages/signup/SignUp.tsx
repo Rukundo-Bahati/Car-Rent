@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast, ToastOptions } from "react-toastify";
 import axios from "axios";
 import styles from "./styles.module.css";
-import { Heading } from "@chakra-ui/react";
+import { Heading, Text } from "@chakra-ui/react";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const SignUp = () => {
 
   const toastOptions: ToastOptions = {
     position: "top-right",
-    autoClose: 8000,
+    autoClose: 3000,
     pauseOnHover: true,
     draggable: true,
     theme: "dark",
@@ -45,13 +45,17 @@ const SignUp = () => {
     if (validateForm()) {
       try {
         const signupRoute = "http://localhost:5230/api/users";
-        const { data: res } = await axios.post(signupRoute, formData);
+        // Exclude ConfirmPassword from the data being sent to the backend
+        const { ConfirmPassword, ...dataToSend } = formData;
+
+        const { data } = await axios.post(signupRoute, dataToSend);
+        console.log(data); // Check the response object
 
         // Check if the user was successfully created
-        if (res.token) {
+        if (data.token) {
           toast.success("Operation successful..");
-          // Set token in cookies
-          localStorage.setItem("token", res.token);
+          // Set token in local storage
+          localStorage.setItem("token", data.token);
           navigate("/login");
         } else {
           throw new Error("User registration failed");
@@ -72,13 +76,13 @@ const SignUp = () => {
       <div className={styles.signup_container}>
         <div className={styles.signup_form_container}>
           <div className={styles.left}>
-            <h1>Welcome Back</h1>
+            <Text fontSize={{ base: "1.3rem", md: "1.6rem" }}>Welcome!</Text>
             <button
               type="button"
               className={styles.white_btn}
               onClick={() => navigate("/login")}
             >
-              Sing in
+              Sign in
             </button>
           </div>
           <div className={styles.right}>
@@ -120,7 +124,7 @@ const SignUp = () => {
               />
 
               <button type="submit" className={styles.green_btn}>
-                Sing Up
+                Sign Up
               </button>
             </form>
           </div>

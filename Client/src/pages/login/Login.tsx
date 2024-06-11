@@ -4,7 +4,7 @@ import { ToastContainer, toast , ToastOptions} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import styles from "./styles.module.css";
-import { Heading } from "@chakra-ui/react";
+import { Heading, Text } from "@chakra-ui/react";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Login = () => {
 
   const toastOptions: ToastOptions = {
     position: "top-right",
-    autoClose: 8000,
+    autoClose: 3000,
     pauseOnHover: true,
     draggable: true,
     theme: "dark",
@@ -75,7 +75,6 @@ const Login = () => {
                 name="email"
                 onChange={handleChange}
                 value={formData.email}
-                required
                 className={styles.input}
               />
               <input
@@ -84,7 +83,6 @@ const Login = () => {
                 name="password"
                 onChange={handleChange}
                 value={formData.password}
-                required
                 className={styles.input}
               />
 
@@ -94,7 +92,7 @@ const Login = () => {
             </form>
           </div>
           <div className={styles.right}>
-            <h1>New Here ?</h1>
+            <Text fontSize={{base: '1.3rem', md: '1.6rem'}}>New Here ?</Text>
             <button
               type="button"
               className={styles.white_btn}

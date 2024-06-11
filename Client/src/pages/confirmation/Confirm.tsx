@@ -4,9 +4,35 @@ import Desc from "../../components/description/Desc";
 import Nav from "../../components/nav/Nav";
 import { BsArrowLeft, BsHouse } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const Confirm = () => {
   const navigate = useNavigate();
+ const [currentUser, setCurrentUser] = useState("")
+  
+  useEffect(() => {
+    const checkToken = () => {
+      const storedToken = localStorage.getItem("token");
+      if (!storedToken) {
+        navigate("/login");
+      } else {
+        try {
+          // Validate and parse the token here if needed
+          setCurrentUser(storedToken);
+        } catch (error) {
+          console.error("Error validating token:", error);
+          navigate("/login");
+        }
+      }
+    };
+
+    checkToken();
+  }, [navigate]);
+
+  if (currentUser === null) {
+    // Return loading state or null here if needed
+    return null;
+  }
   const details = [
     { id: 1, name: "2 People" },
     { id: 2, name: "Standard Car" },

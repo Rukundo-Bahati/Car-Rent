@@ -22,63 +22,16 @@ import img6 from "../../assets/img6.jpg";
 import "./landing.css";
 import Footer from "../../components/footer/Footer";
 import FeatureCard from "../../components/featurecard/FeatureCard";
-
-const Nav = styled.nav`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background-color: #080124;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-`;
-
-const NavFlex = styled.div`
-  display: flex;
-  align-items: center;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-`;
-
-const NavLink = styled(Link)`
-  margin-right: 1rem;
-  text-decoration: none;
-  color: #007bff;
-  font-size: 1rem;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  @media (max-width: 768px) {
-    margin: 0.5rem 0;
-  }
-`;
-
-const NavButton = styled(Button)`
-  margin-left: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  cursor: pointer;
-  border: ${(props) => props.border || "none"};
-  background-color: ${(props) => props.bg || "#007bff"};
-  color: ${(props) => props.color || "#fff"};
-  font-size: 1rem;
-
-  &:hover {
-    background-color: ${(props) => props.hoverBg || "#0056b3"};
-  }
-
-  @media (max-width: 768px) {
-    margin: 0.5rem 0;
-    width: 100%;
-  }
-`;
+import { useState } from "react";
+import { FaBars } from "react-icons/fa";
 
 const Landing = () => {
   const navigate = useNavigate();
+  const [openMenu, setOpenMenu] = useState(false);
+
+  const handleClick = () => {
+    setOpenMenu(!openMenu);
+  };
 
   const bgImage = `url(${landingImg})`;
 
@@ -87,26 +40,33 @@ const Landing = () => {
       <Nav>
         <h1>Car Rental</h1>
         <NavFlex>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/services">Services</NavLink>
-          <NavLink to="/ourhotels">Cars</NavLink>
-          <NavLink to="/help">Help</NavLink>
-          <NavButton onClick={() => navigate("/login")} border="1px solid #0ef">
-            Login
-          </NavButton>
-          <NavButton
-            onClick={() => navigate("/signup")}
-            bg="var(--bg-btn)"
-            hoverBg="#0069d9"
-            border="1px solid #0ef"
-          >
-            Register
-          </NavButton>
+          <MenuIcon onClick={handleClick}>
+            <FaBars />
+          </MenuIcon>
+          <NavItems openMenu={openMenu}>
+            <NavLink to="/about">About</NavLink>
+            <NavLink to="/services">Services</NavLink>
+            <NavLink to="/cars">Cars</NavLink>
+            <NavLink to="/help">Help</NavLink>
+            <NavButton
+              onClick={() => navigate("/login")}
+              border="1px solid #0ef"
+            >
+              Login
+            </NavButton>
+            <NavButton
+              onClick={() => navigate("/signup")}
+              bg="var(--bg-btn)"
+              hoverBg="#0069d9"
+              border="1px solid #0ef"
+            >
+              Register
+            </NavButton>
+          </NavItems>
         </NavFlex>
       </Nav>
 
       <Grid
-        templateColumns="repeat(2, 1fr)"
         backgroundImage={bgImage}
         backgroundPosition="cover"
         backgroundSize="cover"
@@ -115,19 +75,20 @@ const Landing = () => {
         h="100vh"
       >
         <GridItem
-          bg="#15014152"
+          bg="#15014171"
           h="100%"
           alignItems="center"
           justifyContent="center"
           display="flex"
           flexDirection="column"
         >
+          <Text fontSize="1.6rem">Welcome!</Text>
           <Heading
             textAlign="center"
             color="#fff"
             textShadow="2px 2px 4px rgba(0, 0, 0, 0.5)"
           >
-            Find Your Perfect Rental Car
+            Find Your Perfect Car
           </Heading>
           <Text
             fontSize="1.5rem"
@@ -148,7 +109,6 @@ const Landing = () => {
             </Button>
           </Link>
         </GridItem>
-        <GridItem></GridItem>
       </Grid>
 
       <Grid
@@ -180,7 +140,7 @@ const Landing = () => {
           templateColumns={{
             base: "repeat(1, 1fr)",
             md: "repeat(2, 1fr)",
-            lg: "repeat(3, 1fr)",
+            // lg: "repeat(3, 1fr)",
           }}
           w="100%"
           gap="2rem"
@@ -239,3 +199,80 @@ const Landing = () => {
 };
 
 export default Landing;
+
+const Nav = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #080124;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const NavFlex = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;
+
+const MenuIcon = styled.div`
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+`;
+
+const NavItems = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    display: ${(props) => (props.openMenu ? "flex" : "none")};
+    flex-direction: column;
+    width: 100%;
+    background-color: #080124;
+  }
+`;
+
+const NavLink = styled(Link)`
+  margin-right: 1rem;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: all 0.4s;
+  &:hover {
+    text-decoration: underline;
+    color: #007bff;
+  }
+
+  @media (max-width: 768px) {
+    margin: 0.5rem 0;
+  }
+`;
+
+const NavButton = styled.button`
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: ${(props) => props.border || "none"};
+  background-color: ${(props) => props.bg || "#007bff"};
+  color: ${(props) => props.color || "#fff"};
+  font-size: 1rem;
+  transition: all 0.4s;
+
+  &:hover {
+    background-color: ${(props) => props.hoverBg || "#0056b3"};
+  }
+
+  @media (max-width: 768px) {
+    margin: 0.5rem 0;
+    width: 100%;
+  }
+`;

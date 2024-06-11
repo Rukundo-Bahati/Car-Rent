@@ -1,15 +1,23 @@
 import { Stack, Heading, Text } from "@chakra-ui/react";
+import Nav from "../nav/Nav";
+import { BsBell, BsArrowLeft } from "react-icons/bs";
 
 export const Privacy = () => (
-  <Stack
-    h="100vh"
-    p="4"
-    spacing="4"
-    bg="gray.100"
-    align="center"
-    justify="center"
-    bgColor="#080124"
-  >
+  <Stack>
+    <Nav heading={<BsArrowLeft style={{ fontSize: "2rem" }} />}>
+      <BsBell style={{ fontSize: "2rem" }} />
+    </Nav>
+    <Stack
+      h="100vh"
+      p="4"
+      spacing="4"
+      bg="gray.100"
+      align="center"
+      justify="center"
+      bgColor="#080124"
+    >
+      
+ 
     <Heading color="white">Privacy Policy</Heading>
     <Text color="white">
       Your privacy is important to us. This privacy policy explains the personal
@@ -30,9 +38,14 @@ export const Privacy = () => (
       at privacy@carrentalapp.com.
     </Text>
   </Stack>
+  </Stack>
 );
 
 export const Help = () => (
+  <Stack>
+   <Nav heading={<BsArrowLeft style={{ fontSize: "2rem" }} />}>
+      <BsBell style={{ fontSize: "2rem" }} />
+    </Nav>
   <Stack
     h="100vh"
     p="4"
@@ -60,9 +73,14 @@ export const Help = () => (
       Thank you for using our service. We are here to help you!
     </Text>
   </Stack>
+  </Stack>
 );
 
 export const Policy = () => (
+  <Stack>
+ <Nav heading={<BsArrowLeft style={{ fontSize: "2rem" }} />}>
+      <BsBell style={{ fontSize: "2rem" }} />
+    </Nav>
   <Stack
     h="100vh"
     p="4"
@@ -95,5 +113,6 @@ export const Policy = () => (
       If you have any questions regarding our terms and conditions, please
       contact us at policy@carrentalapp.com.
     </Text>
+  </Stack>
   </Stack>
 );

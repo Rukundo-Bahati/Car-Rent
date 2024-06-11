@@ -33,7 +33,7 @@ import HotelServiceCard from "../hotelservice/HotelServiceCard";
 
 export const About = () => (
   <Stack bg="#080124">
-    <Nav heading="Places">
+    <Nav heading="Home" >
       <BsBell style={{ fontSize: "2rem" }} />
     </Nav>
     <Grid
@@ -81,7 +81,7 @@ export const About = () => (
 
 export const Services = () => (
   <Stack>
-    <Nav heading="Places">
+    <Nav heading="Home">
       <BsBell style={{ fontSize: "2rem" }} />
     </Nav>
     <Stack
@@ -136,7 +136,7 @@ export const Services = () => (
 
 export const Hotels = () => (
   <>
-    <Nav heading="Places">
+    <Nav heading="home">
       <BsBell style={{ fontSize: "2rem" }} />
     </Nav>
     <Stack
@@ -157,7 +157,7 @@ export const Hotels = () => (
       >
         <FeatureCard img={hotel10}>
           <CardHeader>
-            <Image src={hotel22} />
+            <Image src={""} />
           </CardHeader>
           <CardBody>
             <Text>
@@ -169,7 +169,7 @@ export const Hotels = () => (
         </FeatureCard>
         <FeatureCard img={hotel33}>
           <CardHeader>
-            <Image src={hotel27} />
+            <Image src={""} />
           </CardHeader>
           <CardBody>
             <Text>
@@ -181,7 +181,7 @@ export const Hotels = () => (
         </FeatureCard>
         <FeatureCard img={hotel7}>
           <CardHeader>
-            <Image src={hotel16} />
+            <Image src={""} />
           </CardHeader>
           <CardBody>
             <Text>
@@ -194,7 +194,7 @@ export const Hotels = () => (
         </FeatureCard>
         <FeatureCard img={hotel4}>
           <CardHeader>
-            <Image src={hotel10} />
+            <Image src={""} />
           </CardHeader>
           <CardBody>
             <Text>
@@ -206,7 +206,7 @@ export const Hotels = () => (
         </FeatureCard>
         <FeatureCard img={hotel41}>
           <CardHeader>
-            <Image src={hotel28} />
+            <Image src={""} />
           </CardHeader>
           <CardBody>
             <Text>
@@ -217,7 +217,7 @@ export const Hotels = () => (
         </FeatureCard>
         <FeatureCard img={hotel36}>
           <CardHeader>
-            <Image src={hotel5} />
+            <Image src={""} />
           </CardHeader>
           <CardBody>
             <Text>
