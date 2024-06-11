@@ -8,8 +8,8 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import styled from "styled-components";
 import landingImg from "../../assets/landing3.jpg";
-import Nav from "../../components/nav/Nav";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import discover from "../../assets/discover.jpg";
@@ -19,38 +19,97 @@ import img4 from "../../assets/img4.jpg";
 import img1 from "../../assets/img2.jpg";
 import img5 from "../../assets/img5.jpg";
 import img6 from "../../assets/img6.jpg";
-
 import "./landing.css";
 import Footer from "../../components/footer/Footer";
 import FeatureCard from "../../components/featurecard/FeatureCard";
+
+const Nav = styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #080124;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const NavFlex = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;
+
+const NavLink = styled(Link)`
+  margin-right: 1rem;
+  text-decoration: none;
+  color: #007bff;
+  font-size: 1rem;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    margin: 0.5rem 0;
+  }
+`;
+
+const NavButton = styled(Button)`
+  margin-left: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  border: ${(props) => props.border || "none"};
+  background-color: ${(props) => props.bg || "#007bff"};
+  color: ${(props) => props.color || "#fff"};
+  font-size: 1rem;
+
+  &:hover {
+    background-color: ${(props) => props.hoverBg || "#0056b3"};
+  }
+
+  @media (max-width: 768px) {
+    margin: 0.5rem 0;
+    width: 100%;
+  }
+`;
 
 const Landing = () => {
   const navigate = useNavigate();
 
   const bgImage = `url(${landingImg})`;
+
   return (
     <Stack m="1rem" bg="#080124">
-      <Nav heading="Car Rental">
-        <Flex>
-          <Button onClick={() => navigate("/login")} border="1px solid #0ef">
+      <Nav>
+        <h1>Car Rental</h1>
+        <NavFlex>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/services">Services</NavLink>
+          <NavLink to="/ourhotels">Cars</NavLink>
+          <NavLink to="/help">Help</NavLink>
+          <NavButton onClick={() => navigate("/login")} border="1px solid #0ef">
             Login
-          </Button>
-          <Button
+          </NavButton>
+          <NavButton
             onClick={() => navigate("/signup")}
             bg="var(--bg-btn)"
-            mx="1rem"
+            hoverBg="#0069d9"
             border="1px solid #0ef"
           >
             Register
-          </Button>
-        </Flex>
+          </NavButton>
+        </NavFlex>
       </Nav>
 
       <Grid
-        gridTemplateColumns="repeat(2,1fr)"
-        bgImage={bgImage}
-        bgPosition="cover"
-        bgSize="cover"
+        templateColumns="repeat(2, 1fr)"
+        backgroundImage={bgImage}
+        backgroundPosition="cover"
+        backgroundSize="cover"
         height="80vh"
         alignItems="center"
         h="100vh"
@@ -61,7 +120,7 @@ const Landing = () => {
           alignItems="center"
           justifyContent="center"
           display="flex"
-          flexDir="column"
+          flexDirection="column"
         >
           <Heading
             textAlign="center"
@@ -78,7 +137,6 @@ const Landing = () => {
           >
             Choose from a wide range of cars for any occasion
           </Text>
-
           <Link to="/signup">
             <Button
               colorScheme="blue"
@@ -90,12 +148,11 @@ const Landing = () => {
             </Button>
           </Link>
         </GridItem>
-
         <GridItem></GridItem>
       </Grid>
 
       <Grid
-        gridTemplateColumns={{ base: "repeat(1,1fr)", md: "repeat(2,1fr)" }}
+        templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
         justifyContent="center"
         alignItems="center"
         p="1rem"
@@ -116,9 +173,11 @@ const Landing = () => {
       </Grid>
 
       <Stack mx="1rem">
-        <h1 style={{ fontSize: "2rem" }}>Featured Cars on our Platform</h1>
+        <Heading as="h1" fontSize="2rem">
+          Featured Cars on our Platform
+        </Heading>
         <Grid
-          gridTemplateColumns={{
+          templateColumns={{
             base: "repeat(1, 1fr)",
             md: "repeat(2, 1fr)",
             lg: "repeat(3, 1fr)",
@@ -126,166 +185,46 @@ const Landing = () => {
           w="100%"
           gap="2rem"
         >
-          <GridItem>
-            <FeatureCard img={img4}>
-              <h1>Toyota Camry</h1>
-              <h3>Los Angeles, CA, USA</h3>
-              <Text fontSize="1.3rem" color="#fff">
-                $50/{" "}
-                <span style={{ fontSize: "1rem", color: "#0ed" }}>day</span>
-              </Text>
-              <Flex justifyContent="space-evenly" fontSize="1.1rem">
-                <Flex gap="7px" alignItems="center">
-                  {/* <FaCar /> */}
-                  <Text color="#ccc">Automatic</Text>
+          {[img4, img1, img6, img2, img5, img3].map((img, index) => (
+            <GridItem key={index}>
+              <FeatureCard img={img}>
+                <Heading as="h1">Car {index + 1}</Heading>
+                <Text fontSize="1.3rem" color="#fff">
+                  ${index * 20 + 50}/{" "}
+                  <span style={{ fontSize: "1rem", color: "#0ed" }}>day</span>
+                </Text>
+                <Flex justifyContent="space-evenly" fontSize="1.1rem">
+                  <Flex gap="7px" alignItems="center">
+                    <Text color="#ccc">Automatic</Text>
+                  </Flex>
+                  <Flex gap="7px" alignItems="center">
+                    <FaUser />
+                    <Text color="#ccc">5 Seats</Text>
+                  </Flex>
+                  <Flex gap="7px" alignItems="center">
+                    <Text color="#ccc">Petrol</Text>
+                  </Flex>
                 </Flex>
-                <Flex gap="7px" alignItems="center">
-                  <FaUser />
-                  <Text color="#ccc">5 Seats</Text>
-                </Flex>
-                <Flex gap="7px" alignItems="center">
-                  {/* <FaGasPump /> */}
-                  <Text color="#ccc">Petrol</Text>
-                </Flex>
-              </Flex>
-            </FeatureCard>
-          </GridItem>
-          <GridItem>
-            <FeatureCard img={img1}>
-              <h1>Ford Mustang</h1>
-              <h3>Miami, FL, USA</h3>
-              <Text fontSize="1.3rem" color="#fff">
-                $120/{" "}
-                <span style={{ fontSize: "1rem", color: "#0ed" }}>day</span>
-              </Text>
-              <Flex justifyContent="space-evenly" fontSize="1.1rem">
-                <Flex gap="7px" alignItems="center">
-                  {/* <FaCar /> */}
-                  <Text color="#ccc">Manual</Text>
-                </Flex>
-                <Flex gap="7px" alignItems="center">
-                  <FaUser />
-                  <Text color="#ccc">4 Seats</Text>
-                </Flex>
-                <Flex gap="7px" alignItems="center">
-                  {/* <FaGasPump /> */}
-                  <Text color="#ccc">Petrol</Text>
-                </Flex>
-              </Flex>
-            </FeatureCard>
-          </GridItem>
-          <GridItem>
-            <FeatureCard img={img6}>
-              <h1>Chevrolet Tahoe</h1>
-              <h3>Houston, TX, USA</h3>
-              <Text fontSize="1.3rem" color="#fff">
-                $90/{" "}
-                <span style={{ fontSize: "1rem", color: "#0ed" }}>day</span>
-              </Text>
-              <Flex justifyContent="space-evenly" fontSize="1.1rem">
-                <Flex gap="7px" alignItems="center">
-                  {/* <FaCar /> */}
-                  <Text color="#ccc">Automatic</Text>
-                </Flex>
-                <Flex gap="7px" alignItems="center">
-                  <FaUser />
-                  <Text color="#ccc">7 Seats</Text>
-                </Flex>
-                <Flex gap="7px" alignItems="center">
-                  {/* <FaGasPump /> */}
-                  <Text color="#ccc">Diesel</Text>
-                </Flex>
-              </Flex>
-            </FeatureCard>
-          </GridItem>
-          <GridItem>
-            <FeatureCard img={img2}>
-              <h1>Honda Accord</h1>
-              <h3>San Francisco, CA, USA</h3>
-              <Text fontSize="1.3rem" color="#fff">
-                $60/{" "}
-                <span style={{ fontSize: "1rem", color: "#0ed" }}>day</span>
-              </Text>
-              <Flex justifyContent="space-evenly" fontSize="1.1rem">
-                <Flex gap="7px" alignItems="center">
-                  {/* <FaCar /> */}
-                  <Text color="#ccc">Automatic</Text>
-                </Flex>
-                <Flex gap="7px" alignItems="center">
-                  <FaUser />
-                  <Text color="#ccc">5 Seats</Text>
-                </Flex>
-                <Flex gap="7px" alignItems="center">
-                  {/* <FaGasPump /> */}
-                  <Text color="#ccc">Hybrid</Text>
-                </Flex>
-              </Flex>
-            </FeatureCard>
-          </GridItem>
-          <GridItem>
-            <FeatureCard img={img5}>
-              <h1>BMW X5</h1>
-              <h3>New York, NY, USA</h3>
-              <Text fontSize="1.3rem" color="#fff">
-                $150/{" "}
-                <span style={{ fontSize: "1rem", color: "#0ed" }}>day</span>
-              </Text>
-              <Flex justifyContent="space-evenly" fontSize="1.1rem">
-                <Flex gap="7px" alignItems="center">
-                  {/* <FaCar /> */}
-                  <Text color="#ccc">Automatic</Text>
-                </Flex>
-                <Flex gap="7px" alignItems="center">
-                  <FaUser />
-                  <Text color="#ccc">5 Seats</Text>
-                </Flex>
-                <Flex gap="7px" alignItems="center">
-                  {/* <FaGasPump /> */}
-                  <Text color="#ccc">Petrol</Text>
-                </Flex>
-              </Flex>
-            </FeatureCard>
-          </GridItem>
-          <GridItem>
-            <FeatureCard img={img3}>
-              <h1>Audi A4</h1>
-              <h3>Chicago, IL, USA</h3>
-              <Text fontSize="1.3rem" color="#fff">
-                $80/{" "}
-                <span style={{ fontSize: "1rem", color: "#0ed" }}>day</span>
-              </Text>
-              <Flex justifyContent="space-evenly" fontSize="1.1rem">
-                <Flex gap="7px" alignItems="center">
-                  {/* <FaCar /> */}
-                  <Text color="#ccc">Automatic</Text>
-                </Flex>
-                <Flex gap="7px" alignItems="center">
-                  <FaUser />
-                  <Text color="#ccc">5 Seats</Text>
-                </Flex>
-                <Flex gap="7px" alignItems="center">
-                  {/* <FaGasPump /> */}
-                  <Text color="#ccc">Petrol</Text>
-                </Flex>
-              </Flex>
-            </FeatureCard>
-          </GridItem>
+              </FeatureCard>
+            </GridItem>
+          ))}
         </Grid>
       </Stack>
 
       <Grid
-        gridTemplateColumns={{ base: "repeat(1,1fr)", md: "repeat(2,1fr)" }}
+        templateColumns={{ base: "repeat(1, 1fr)", md: "repeat(2, 1fr)" }}
         m="2rem"
         gap="1rem"
       >
         <GridItem display="flex" alignItems="center" flexDirection="column">
-          <h1 style={{ fontSize: "2rem" }}>Why Rent with Us?</h1>
+          <Heading as="h1" fontSize="2rem">
+            Why Rent with Us?
+          </Heading>
           <Text color="#ccc" my="9px">
             We offer the best prices and a wide selection of vehicles to choose
             from. Our customer service is available 24/7 to assist you with any
             queries.
           </Text>
-
           <Button border="1px solid #0ef" onClick={() => navigate("/signup")}>
             Discover More
           </Button>

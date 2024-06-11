@@ -5,7 +5,9 @@ const Footer = () => {
   return (
     <Stack p="1.2rem" bg="#080124" color="#ddd" boxShadow="0 0 13px #0ed">
       <Stack fontFamily="poppins, sans-serif">
-        <Heading textAlign="center">HF</Heading>
+        <Heading textAlign="center" style={{ cursor: "pointer" }}>
+          CAR
+        </Heading>
       </Stack>
       <Flex gap="1rem" justifyContent="center" alignItems="center">
         <Link to="/about">About</Link>
